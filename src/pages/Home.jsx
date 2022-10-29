@@ -17,7 +17,6 @@ export default function Home() {
     try {
       const { data } = await axios.get("/product");
       setProducts(data);
-      console.log(data);
     } catch (err) {
       console.log("Erro no carregamento de produtos: " + err);
     }
