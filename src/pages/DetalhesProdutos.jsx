@@ -2,14 +2,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import ProductCard from "../components/cards/ProductCard";
 
 export default function DetalhesProdutos() {
   axios.defaults.baseURL = import.meta.env.VITE_APP_API;
 
   const [product, setProduct] = useState({});
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   const params = useParams();
-  console.log("Pram: " + params.id);
 
   useEffect(() => {
     if (params?.id) loadProduct();
@@ -17,12 +18,21 @@ export default function DetalhesProdutos() {
 
   async function loadProduct() {
     const idparam = params.id.toString();
-    console.log(idparam);
     try {
       const { data } = await axios.get(`/product/detail/?id=${params.id}`);
       setProduct(data);
+      loadProductsByCategory(data.category.id);
     } catch (err) {
       console.log("Erro no carregamento do produto: " + err);
+    }
+  }
+
+  async function loadProductsByCategory(id) {
+    try {
+      const { data } = await axios.get(`/category/detail/?id=${id}`);
+      setRelatedProducts([data.products]);
+    } catch (err) {
+      console.log("Erro no carregamento de categorias do produto: " + err);
     }
   }
 
@@ -39,8 +49,7 @@ export default function DetalhesProdutos() {
             <div className="d-flex justify-content-between lead p-5 bg-light fw-bold">
               <div>
                 <p>Preço: {product?.price}</p>
-                <p>Categoria: Cadeira</p>
-                <p>Quantidade: 20</p>
+                <p>Categoria: {product?.category?.name}</p>
               </div>
             </div>
             <button
@@ -58,6 +67,11 @@ export default function DetalhesProdutos() {
         <div className="col-md-3">
           <h2>Produtos Relacionados</h2>
           <hr />
+          {relatedProducts?.map((p) =>
+            p.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))
+          )}
         </div>
       </div>
     </div>
