@@ -17,7 +17,6 @@ export default function DetalhesProdutos() {
   }, [params?.id]);
 
   async function loadProduct() {
-    const idparam = params.id.toString();
     try {
       const { data } = await axios.get(`/product/detail/?id=${params.id}`);
       setProduct(data);
