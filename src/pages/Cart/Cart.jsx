@@ -3,6 +3,7 @@ import { useCart } from "../../contexts/cart";
 import { useNavigate } from "react-router-dom";
 import WelcomeCard from "../../components/cards/WelcomeCard";
 import ListagemCarrinhoHorizontal from "../../components/cards/ListagemCarrinho";
+import CarrinhoSidebar from "../../components/cards/CarrinhoSidebar";
 
 export default function Cart() {
   const [cart, setCart] = useCart();
@@ -13,7 +14,7 @@ export default function Cart() {
   return (
     <>
       <WelcomeCard
-        title={`Hello ${auth?.token && auth?.user?.name}`}
+        title={`Olá ${auth?.token && auth?.user?.name}`}
         subTitle={
           cart?.length
             ? `Você tem  ${cart.length} items no carrinho. ${
@@ -55,7 +56,7 @@ export default function Cart() {
               </div>
             </div>
 
-            {/* <UserCartSidebar /> */}
+            <CarrinhoSidebar />
           </div>
         </div>
       )}

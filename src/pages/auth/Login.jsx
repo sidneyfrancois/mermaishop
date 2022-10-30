@@ -2,12 +2,15 @@ import WelcomeCard from "../../components/cards/WelcomeCard";
 import axios from "axios";
 import { useAuth } from "../../contexts/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [auth, setAuth] = useAuth();
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,9 +22,7 @@ export default function Login() {
 
       localStorage.setItem("auth", JSON.stringify(data));
       setAuth({ ...auth, token: data.token, user: data.user });
-
-      console.log(auth);
-      console.log(data);
+      navigate("/");
     } catch (err) {
       console.log("Erro ao efetuar o login" + err);
       console.log(err.response.data.message);
