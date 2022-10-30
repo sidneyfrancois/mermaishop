@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cart";
 
 export default function ProductCard({ product }) {
+  const [cart, setCart] = useCart();
+
   const navigate = useNavigate();
 
   return (
@@ -18,7 +21,13 @@ export default function ProductCard({ product }) {
         >
           Detalhes
         </button>
-        <button className="btn btn-outline-primary col card-button">
+        <button
+          className="btn btn-outline-primary col card-button"
+          onClick={() => {
+            setCart([...cart, product]);
+            localStorage.setItem("cart", JSON.stringify([...cart, product]));
+          }}
+        >
           Adicionar ao carrinho
         </button>
       </div>

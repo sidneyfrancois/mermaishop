@@ -4,7 +4,7 @@ import DetalhesProdutos from "./pages/DetalhesProdutos";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (
