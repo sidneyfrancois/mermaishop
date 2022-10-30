@@ -20,16 +20,20 @@ export default function DetalhesProdutos() {
     try {
       const { data } = await axios.get(`/product/detail/?id=${params.id}`);
       setProduct(data);
-      loadProductsByCategory(data.category.id);
+      loadProductsByCategory(data.category.id, data.id);
+      setRelatedProducts(relatedProducts);
     } catch (err) {
       console.log("Erro no carregamento do produto: " + err);
     }
   }
 
-  async function loadProductsByCategory(id) {
+  async function loadProductsByCategory(id, productId) {
     try {
       const { data } = await axios.get(`/category/detail/?id=${id}`);
-      setRelatedProducts([data.products]);
+      let related = data.products;
+      let index = related.findIndex((item) => item.id === productId);
+      related.splice(index, 1);
+      setRelatedProducts([related]);
     } catch (err) {
       console.log("Erro no carregamento de categorias do produto: " + err);
     }
