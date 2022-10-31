@@ -15,10 +15,13 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/auth", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://apimermaid.herokuapp.com/auth",
+        {
+          email,
+          password,
+        }
+      );
 
       localStorage.setItem("auth", JSON.stringify(data));
       setAuth({ ...auth, token: data.token, user: data.user });

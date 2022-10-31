@@ -4,7 +4,7 @@ import WelcomeCard from "../components/cards/WelcomeCard";
 import axios from "axios";
 import { useState } from "react";
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_API;
+// axios.defaults.baseURL = import.meta.env.VITE_APP_API;
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,9 @@ export default function Home() {
 
   async function loadProducts() {
     try {
-      const { data } = await axios.get("/product");
+      const { data } = await axios.get(
+        "https://apimermaid.herokuapp.com/product"
+      );
       setProducts(data);
     } catch (err) {
       console.log("Erro no carregamento de produtos: " + err);

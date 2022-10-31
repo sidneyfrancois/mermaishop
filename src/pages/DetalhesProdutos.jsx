@@ -5,7 +5,7 @@ import { useState } from "react";
 import ProductCard from "../components/cards/ProductCard";
 
 export default function DetalhesProdutos() {
-  axios.defaults.baseURL = import.meta.env.VITE_APP_API;
+  // axios.defaults.baseURL = import.meta.env.VITE_APP_API;
 
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -18,7 +18,9 @@ export default function DetalhesProdutos() {
 
   async function loadProduct() {
     try {
-      const { data } = await axios.get(`/product/detail/?id=${params.id}`);
+      const { data } = await axios.get(
+        `https://apimermaid.herokuapp.com/product/detail/?id=${params.id}`
+      );
       setProduct(data);
       loadProductsByCategory(data.category.id, data.id);
       setRelatedProducts(relatedProducts);
@@ -29,7 +31,9 @@ export default function DetalhesProdutos() {
 
   async function loadProductsByCategory(id, productId) {
     try {
-      const { data } = await axios.get(`/category/detail/?id=${id}`);
+      const { data } = await axios.get(
+        `https://apimermaid.herokuapp.com/category/detail/?id=${id}`
+      );
       let related = data.products;
       let index = related.findIndex((item) => item.id === productId);
       related.splice(index, 1);

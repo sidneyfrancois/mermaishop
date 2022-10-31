@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
-  axios.defaults.baseURL = import.meta.env.VITE_APP_API;
+  // axios.defaults.baseURL = import.meta.env.VITE_APP_API;
 
   useEffect(() => {
     const data = localStorage.getItem("auth");
