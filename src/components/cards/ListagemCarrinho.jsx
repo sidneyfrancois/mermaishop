@@ -1,4 +1,5 @@
 import { useCart } from "../../contexts/cart";
+import ImagemPadrao from "../../assets/clothe.jpg";
 
 export default function ListagemCarrinhoHorizontal({ product, remove = true }) {
   const [cart, setCart] = useCart();
@@ -13,14 +14,11 @@ export default function ListagemCarrinhoHorizontal({ product, remove = true }) {
   }
 
   return (
-    <div
-      className="card mb-3"
-      // style={{ maxWidth: 540 }}
-    >
+    <div className="card mb-3">
       <div className="row g-0">
         <div className="col-md-4">
           <img
-            src=""
+            src={ImagemPadrao}
             alt={product.name}
             style={{
               height: "150px",

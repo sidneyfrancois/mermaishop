@@ -27,17 +27,13 @@ export default function Home() {
   return (
     <div>
       <WelcomeCard title="Seja bem vindo!" />
-      <div className="container-fluid">
-        <div className="row">
-          <div className="">
-            <h2 className="p-3 mt-2 mb-2 h4 bg-light text-center">
-              {products?.map((product) => (
-                <div className="col-md-6" key={product.id}>
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </h2>
-          </div>
+      <div className="container">
+        <div className="row row-cols-1 row-cols-md-4 g-4 text-center">
+          {products?.map((product) => (
+            <div className="col" key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
