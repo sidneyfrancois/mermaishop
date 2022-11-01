@@ -2,6 +2,7 @@ import { useState } from "react";
 import WelcomeCard from "../../components/cards/WelcomeCard";
 import axios from "axios";
 import { useAuth } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -9,6 +10,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
 
   const [auth, setAuth] = useAuth();
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,6 +27,7 @@ export default function Register() {
 
       localStorage.setItem("auth", JSON.stringify(data));
       setAuth({ ...auth, token: data.token, user: data.user });
+      navigate("/");
     } catch (err) {
       console.log("Erro ao efetuar o login" + err);
       console.log(err.response.data.message);
