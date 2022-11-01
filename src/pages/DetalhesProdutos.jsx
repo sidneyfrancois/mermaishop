@@ -19,7 +19,7 @@ export default function DetalhesProdutos() {
   async function loadProduct() {
     try {
       const { data } = await axios.get(
-        `https://apimermaid.herokuapp.com/detail/?id=${params.id}`
+        `https://apimermaid.herokuapp.com/product/detail/?id=${params.id}`
       );
       setProduct(data);
       loadProductsByCategory(data.category.id, data.id);
