@@ -20,7 +20,7 @@ export default function CarrinhoSidebar() {
   const [opcoesFrete, setOpcoesFrete] = useState([]);
   const [frete, setFrete] = useState("");
 
-  const [addressState, setAdressState] = useState(true);
+  const [addressState, setAdressState] = useState(false);
 
   const navigate = useNavigate();
 
