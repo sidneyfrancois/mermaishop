@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 import { useNavigate } from "react-router-dom";
+import CartLogo from "../assets/sacola.png";
+import { useCart } from "../contexts/cart";
 
 export default function Menu() {
   const [auth, setAuth] = useAuth();
+  const [cart, setCart] = useCart();
 
   const navigate = useNavigate();
 
@@ -21,9 +24,15 @@ export default function Menu() {
             Mermaid
           </NavLink>
         </li>
-        <li className="nav-item mt-1">
+        <li className="nav-item">
           <NavLink className="nav-link" to="/cart">
-            CART
+            <img
+              src={CartLogo}
+              style={{
+                width: "24px",
+              }}
+            />
+            <span className="badge text-bg-secondary">{cart.length}</span>
           </NavLink>
         </li>
 

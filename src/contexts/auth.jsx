@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
   // axios.defaults.baseURL = import.meta.env.VITE_APP_API;
 
   useEffect(() => {
-    const data = localStorage.getItem("auth");
+    const data = localStorage.getItem("https://apimermaid.herokuapp.com/auth");
     if (data) {
       const parsed = JSON.parse(data);
       setAuth({ ...auth, user: parsed.user, token: parsed.token });

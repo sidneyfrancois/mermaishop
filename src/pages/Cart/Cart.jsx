@@ -48,7 +48,7 @@ export default function Cart() {
       {cart?.length && (
         <div className="container">
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-6">
               <div className="row">
                 {cart?.map((p, index) => (
                   <ListagemCarrinhoHorizontal key={index} product={p} />

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "../components/cards/ProductCard";
+import ImagemPadrao from "../assets/clothe.jpg";
 
 export default function DetalhesProdutos() {
   // axios.defaults.baseURL = import.meta.env.VITE_APP_API;
@@ -44,18 +45,29 @@ export default function DetalhesProdutos() {
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-9">
+    <div className="container">
+      <div className="row ">
+        <div className="col-md-8">
           <div className="card mb-3">
             <div className="card-body">
+              <img
+                src={ImagemPadrao}
+                alt="imagem do produto"
+                style={{
+                  height: "500px",
+                  width: "600px",
+                  objectFit: "cover",
+                  marginLeft: "-12px",
+                  borderRopRightRadius: "0px",
+                }}
+              />
               <h1 className="fw-bold">{product?.name}</h1>
               <p className="card-text lead">{product?.description}</p>
             </div>
 
             <div className="d-flex justify-content-between lead p-5 bg-light fw-bold">
               <div>
-                <p>Preço: {product?.price}</p>
+                <p>Preço: R$ {product?.price}</p>
                 <p>Categoria: {product?.category?.name}</p>
               </div>
             </div>

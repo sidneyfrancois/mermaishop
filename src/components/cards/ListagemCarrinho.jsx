@@ -14,18 +14,16 @@ export default function ListagemCarrinhoHorizontal({ product, remove = true }) {
   }
 
   return (
-    <div className="card mb-3">
+    <div className="card mb-2">
       <div className="row g-0">
-        <div className="col-md-4">
+        <div className="col-md-3">
           <img
             src={ImagemPadrao}
             alt={product.name}
             style={{
               height: "150px",
               width: "150px",
-              objectFit: "cover",
-              marginLeft: "-12px",
-              borderRopRightRadius: "0px",
+              padding: "5px",
             }}
           />
         </div>
@@ -43,12 +41,12 @@ export default function ListagemCarrinhoHorizontal({ product, remove = true }) {
 
         <div className="d-flex justify-content-between">
           {remove && (
-            <p
-              className="text-danger mb-2 pointer"
+            <button
+              className="btn btn-danger pointer"
               onClick={() => removeFromCart(product.id)}
             >
               Remover do carrinho
-            </p>
+            </button>
           )}
         </div>
       </div>
